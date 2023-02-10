@@ -24,34 +24,6 @@ if(window.Dropzone) {
   Dropzone.autoDiscover = false;
 }
 
-// Basic confirm box
-$('[data-confirm]').each(function() {
-  var me = $(this),
-      me_data = me.data('confirm');
-
-  me_data = me_data.split("|");
-  me.fireModal({
-    title: me_data[0],
-    body: me_data[1],
-    buttons: [
-      {
-        text: me.data('confirm-text-yes') || 'Yes',
-        class: 'btn btn-danger btn-shadow',
-        handler: function() {
-          eval(me.data('confirm-yes'));
-        }
-      },
-      {
-        text: me.data('confirm-text-cancel') || 'Cancel',
-        class: 'btn btn-secondary',
-        handler: function(modal) {
-          $.destroyModal(modal);
-          eval(me.data('confirm-no'));
-        }
-      }
-    ]
-  })
-});
 
 // Global
 $(function() {
@@ -393,46 +365,6 @@ $(function() {
       editor.setSize("100%", 200);
     });
   }
-
-  // Follow function
-  $('.follow-btn, .following-btn').each(function() {
-    var me = $(this),
-        follow_text = 'Follow',
-        unfollow_text = 'Following';
-
-    me.click(function() {
-      if(me.hasClass('following-btn')) {
-        me.removeClass('btn-danger');
-        me.removeClass('following-btn');
-        me.addClass('btn-primary');
-        me.html(follow_text);
-
-        eval(me.data('unfollow-action'));
-      }else{
-        me.removeClass('btn-primary');
-        me.addClass('btn-danger');
-        me.addClass('following-btn');
-        me.html(unfollow_text);
-
-        eval(me.data('follow-action'));
-      }
-      return false;
-    });
-  });
-
-  // Dismiss function
-  $("[data-dismiss]").each(function() {
-    var me = $(this),
-        target = me.data('dismiss');
-
-    me.click(function() {
-      $(target).fadeOut(function() {
-        $(target).remove();
-      });
-      return false;
-    });
-  });
-
   // Collapsable
   $("[data-collapse]").each(function() {
     var me = $(this),
@@ -536,81 +468,4 @@ $(function() {
     });
   });
 
-  // Slide Toggle
-  $('[data-toggle-slide]').click(function() {
-    let target = $(this).data('toggle-slide');
-
-    $(target).slideToggle();
-    return false;
-  });
-
-  // Dismiss modal
-  $("[data-dismiss=modal]").click(function() {
-    $(this).closest('.modal').modal('hide');
-
-    return false;
-  });
-
-  // Width attribute
-  $('[data-width]').each(function() {
-    $(this).css({
-      width: $(this).data('width')
-    });
-  });
-
-  // Height attribute
-  $('[data-height]').each(function() {
-    $(this).css({
-      height: $(this).data('height')
-    });
-  });
-
-  // Chocolat
-  if($('.chocolat-parent').length && jQuery().Chocolat) {
-    $('.chocolat-parent').Chocolat();
-  }
-
-  // Sortable card
-  if($('.sortable-card').length && jQuery().sortable) {
-    $('.sortable-card').sortable({
-      handle: '.card-header',
-      opacity: .8,
-      tolerance: 'pointer'
-    });
-  }
-
-  // Daterangepicker
-  if(jQuery().daterangepicker) {
-    if($(".datepicker").length) {
-      $('.datepicker').daterangepicker({
-        locale: {format: 'YYYY-MM-DD'},
-        singleDatePicker: true,
-      });
-    }
-    if($(".datetimepicker").length) {
-      $('.datetimepicker').daterangepicker({
-        locale: {format: 'YYYY-MM-DD HH:mm'},
-        singleDatePicker: true,
-        timePicker: true,
-        timePicker24Hour: true,
-      });
-    }
-    if($(".daterange").length) {
-      $('.daterange').daterangepicker({
-        locale: {format: 'YYYY-MM-DD'},
-        drops: 'down',
-        opens: 'right'
-      });
-    }
-  }
-
-  // Timepicker
-  if(jQuery().timepicker && $(".timepicker").length) {
-    $(".timepicker").timepicker({
-      icons: {
-        up: 'fas fa-chevron-up',
-        down: 'fas fa-chevron-down'
-      }
-    });
-  }
 });
