@@ -47,4 +47,8 @@ ul.sidebar-menu li:hover > span {
 
 ul i {
      color: #0A8897;
-} 
+}
+
+.nav-item:hover {
+     color: yellow;
+}
