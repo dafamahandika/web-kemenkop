@@ -3696,9 +3696,11 @@ body.layout-3 .main-footer {
 .main-sidebar .sidebar-menu li.active a.has-dropdown:after {
   transform: translate(0, -50%) rotate(90deg);
 }
-.main-sidebar .sidebar-menu li.active ul.dropdown-menu {
+.main-sidebar .sidebar-menu .nav-item.active span{
   background-color: #f8fafb;
+  /* color: #000; */
 }
+
 .main-sidebar .sidebar-menu li a.has-dropdown:after {
   content: "";
   font-family: "Font Awesome 5 Free";
@@ -3712,6 +3714,7 @@ body.layout-3 .main-footer {
 }
 .main-sidebar .sidebar-menu li.active > ul.dropdown-menu li a:hover {
   background-color: #f8fafb;
+
 }
 .main-sidebar .sidebar-menu li ul.dropdown-menu {
   padding: 0;
